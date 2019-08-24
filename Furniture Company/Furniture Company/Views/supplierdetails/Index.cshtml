@@ -1,0 +1,51 @@
+﻿@model IEnumerable<S2G7PVFAPPLATEST25.Models.supplierdetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Supplier Details</h2>
+
+<table class="table" border="1" style="border-style:solid">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaterialName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorAddress)
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaterialName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorAddress)
+            </td>
+
+        </tr>
+    }
+
+</table>

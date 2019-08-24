@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - SIS App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<style type="text/css">
+    .jumbotron {
+        margin-bottom: 0px;
+        background-color: #1DBBB6;
+        background-position: 0% 25%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        text-color: dark pink;
+    }
+</style>
+
+
+<body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div>
+                <h1>
+                    <b>
+                        <p style="color: red">
+                            <marquee direction="left" style="border:solid" width="100%" height="100%">
+                                Pine Valley Furniture Company
+                            </marquee>
+                        </p>
+                </h1></b>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Invoice Report", "Index", "billings")</li>
+                    <li>@Html.ActionLink("Supplier Report", "Index", "supplierdetails")</li>
+                    <li>@Html.ActionLink("Product", "Index", "Products") </li>
+                    <li>@Html.ActionLink("Product Line", "Index", "Productlines") </li>
+                    <li>@Html.ActionLink("Raw Material", "Index", "Rawmaterials")</li>
+                    <li>@Html.ActionLink("Customer", "Index", "Customers")</li>
+                    <li>@Html.ActionLink("Order", "Index", "Orders")</li>
+                    <li>@Html.ActionLink("Order Line", "Index", "Orderlines")</li>
+                    <li>@Html.ActionLink("Employee", "Index", "Employees")</li>
+                    <li>@Html.ActionLink("Skills", "Index", "Skills")</li>
+                    <li>@Html.ActionLink("Work Center", "Index", "Workcenters")</li>
+                    <li>@Html.ActionLink("Vendor", "Index", "Vendors")</li>
+                    <li>@Html.ActionLink("Sales Person", "Index", "Salespersons")</li>
+                    <li>@Html.ActionLink("Sales Territory", "Index", "Territories")</li>
+                    <li>@Html.ActionLink("Supplies", "Index", "Supplies")</li>
+       
+</div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - S2G7 Pine Valley Furniture Company</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

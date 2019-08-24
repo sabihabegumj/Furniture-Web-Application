@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customer" FromRole="Customer" ToRole="Orders" />
+    <NavigationProperty Name="Territories" Relationship="Self.Doesbusinessin" FromRole="Customer" ToRole="Territory" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Skills" Relationship="Self.Hasskill" FromRole="Employee" ToRole="Skill" />
+    <NavigationProperty Name="Workcenters" Relationship="Self.Worksin" FromRole="Employee" ToRole="Workcenter" />
+  </EntityType>
+  <EntityType Name="Orderline">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="OrderID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderedQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Orderline_Orders" FromRole="Orderline" ToRole="Orders" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Orderline_Product" FromRole="Orderline" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customer" FromRole="Orders" ToRole="Customer" />
+    <NavigationProperty Name="Orderlines" Relationship="Self.FK_Orderline_Orders" FromRole="Orders" ToRole="Orderline" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductFinish" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductStandardPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductLineID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Orderlines" Relationship="Self.FK_Orderline_Product" FromRole="Product" ToRole="Orderline" />
+    <NavigationProperty Name="Productline" Relationship="Self.FK_Product_Productline" FromRole="Product" ToRole="Productline" />
+    <NavigationProperty Name="Workcenters" Relationship="Self.Producedin" FromRole="Product" ToRole="Workcenter" />
+    <NavigationProperty Name="Rawmaterials" Relationship="Self.Uses" FromRole="Product" ToRole="Rawmaterial" />
+  </EntityType>
+  <EntityType Name="Productline">
+    <Key>
+      <PropertyRef Name="ProductLineID" />
+    </Key>
+    <Property Name="ProductLineID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Productline" FromRole="Productline" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Rawmaterial">
+    <Key>
+      <PropertyRef Name="MaterialID" />
+    </Key>
+    <Property Name="MaterialID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaterialName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaterialStandardCost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitofMeasure" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Supplies" Relationship="Self.FK_Supplies_Rawmaterial" FromRole="Rawmaterial" ToRole="Supplies" />
+    <NavigationProperty Name="Products" Relationship="Self.Uses" FromRole="Rawmaterial" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Salesperson">
+    <Key>
+      <PropertyRef Name="SalespersonID" />
+    </Key>
+    <Property Name="SalespersonID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SalespersonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SalespersonTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalespersonFax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TerritoryID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Territory" Relationship="Self.FK_Salesperson_Territory" FromRole="Salesperson" ToRole="Territory" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillID" />
+    </Key>
+    <Property Name="SkillID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SkillName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.Hasskill" FromRole="Skill" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Supply">
+    <Key>
+      <PropertyRef Name="VendorID" />
+      <PropertyRef Name="MaterialID" />
+    </Key>
+    <Property Name="VendorID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaterialID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SupplyUnitPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Rawmaterial" Relationship="Self.FK_Supplies_Rawmaterial" FromRole="Supplies" ToRole="Rawmaterial" />
+    <NavigationProperty Name="Vendor" Relationship="Self.FK_Supplies_Vendor" FromRole="Supplies" ToRole="Vendor" />
+  </EntityType>
+  <EntityType Name="Territory">
+    <Key>
+      <PropertyRef Name="TerritoryID" />
+    </Key>
+    <Property Name="TerritoryID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TerritoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Salespersons" Relationship="Self.FK_Salesperson_Territory" FromRole="Territory" ToRole="Salesperson" />
+    <NavigationProperty Name="Customers" Relationship="Self.Doesbusinessin" FromRole="Territory" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Vendor">
+    <Key>
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="VendorID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VendorAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Supplies" Relationship="Self.FK_Supplies_Vendor" FromRole="Vendor" ToRole="Supplies" />
+  </EntityType>
+  <EntityType Name="Workcenter">
+    <Key>
+      <PropertyRef Name="WorkCenterID" />
+    </Key>
+    <Property Name="WorkCenterID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkCenterLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.Producedin" FromRole="Workcenter" ToRole="Product" />
+    <NavigationProperty Name="Employees" Relationship="Self.Worksin" FromRole="Workcenter" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="billing">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="CustomerName" />
+      <PropertyRef Name="OrderId" />
+      <PropertyRef Name="OrderDate" />
+      <PropertyRef Name="OrderedQuantity" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductLineName" />
+    </Key>
+    <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="OrderedQuantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductFinish" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductStandardPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductLineName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="supplierdetail">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="MaterialName" />
+    </Key>
+    <Property Name="ProductID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaterialName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VendorAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Orders_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orderline_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="Orderline" Type="Self.Orderline" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="Orderline">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orderline_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Orderline" Type="Self.Orderline" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Orderline">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Productline">
+    <End Role="Productline" Type="Self.Productline" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productline">
+        <PropertyRef Name="ProductLineID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductLineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplies_Rawmaterial">
+    <End Role="Rawmaterial" Type="Self.Rawmaterial" Multiplicity="1" />
+    <End Role="Supplies" Type="Self.Supply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rawmaterial">
+        <PropertyRef Name="MaterialID" />
+      </Principal>
+      <Dependent Role="Supplies">
+        <PropertyRef Name="MaterialID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Salesperson_Territory">
+    <End Role="Territory" Type="Self.Territory" Multiplicity="1" />
+    <End Role="Salesperson" Type="Self.Salesperson" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Territory">
+        <PropertyRef Name="TerritoryID" />
+      </Principal>
+      <Dependent Role="Salesperson">
+        <PropertyRef Name="TerritoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplies_Vendor">
+    <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+    <End Role="Supplies" Type="Self.Supply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendor">
+        <PropertyRef Name="VendorID" />
+      </Principal>
+      <Dependent Role="Supplies">
+        <PropertyRef Name="VendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Doesbusinessin">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <End Role="Territory" Type="Self.Territory" Multiplicity="*" />
+  </Association>
+  <Association Name="Hasskill">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+  </Association>
+  <Association Name="Producedin">
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Role="Workcenter" Type="Self.Workcenter" Multiplicity="*" />
+  </Association>
+  <Association Name="Uses">
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <End Role="Rawmaterial" Type="Self.Rawmaterial" Multiplicity="*" />
+  </Association>
+  <Association Name="Worksin">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <End Role="Workcenter" Type="Self.Workcenter" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Orderlines" EntityType="Self.Orderline" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Productlines" EntityType="Self.Productline" />
+    <EntitySet Name="Rawmaterials" EntityType="Self.Rawmaterial" />
+    <EntitySet Name="Salespersons" EntityType="Self.Salesperson" />
+    <EntitySet Name="Skills" EntityType="Self.Skill" />
+    <EntitySet Name="Supplies" EntityType="Self.Supply" />
+    <EntitySet Name="Territories" EntityType="Self.Territory" />
+    <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+    <EntitySet Name="Workcenters" EntityType="Self.Workcenter" />
+    <EntitySet Name="billings" EntityType="Self.billing" />
+    <EntitySet Name="supplierdetails" EntityType="Self.supplierdetail" />
+    <AssociationSet Name="FK_Orders_Customer" Association="Self.FK_Orders_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orderline_Orders" Association="Self.FK_Orderline_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Orderline" EntitySet="Orderlines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orderline_Product" Association="Self.FK_Orderline_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Orderline" EntitySet="Orderlines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Productline" Association="Self.FK_Product_Productline">
+      <End Role="Productline" EntitySet="Productlines" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplies_Rawmaterial" Association="Self.FK_Supplies_Rawmaterial">
+      <End Role="Rawmaterial" EntitySet="Rawmaterials" />
+      <End Role="Supplies" EntitySet="Supplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Salesperson_Territory" Association="Self.FK_Salesperson_Territory">
+      <End Role="Territory" EntitySet="Territories" />
+      <End Role="Salesperson" EntitySet="Salespersons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplies_Vendor" Association="Self.FK_Supplies_Vendor">
+      <End Role="Vendor" EntitySet="Vendors" />
+      <End Role="Supplies" EntitySet="Supplies" />
+    </AssociationSet>
+    <AssociationSet Name="Doesbusinessin" Association="Self.Doesbusinessin">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Territory" EntitySet="Territories" />
+    </AssociationSet>
+    <AssociationSet Name="Hasskill" Association="Self.Hasskill">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Skill" EntitySet="Skills" />
+    </AssociationSet>
+    <AssociationSet Name="Producedin" Association="Self.Producedin">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Workcenter" EntitySet="Workcenters" />
+    </AssociationSet>
+    <AssociationSet Name="Uses" Association="Self.Uses">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Rawmaterial" EntitySet="Rawmaterials" />
+    </AssociationSet>
+    <AssociationSet Name="Worksin" Association="Self.Worksin">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Workcenter" EntitySet="Workcenters" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

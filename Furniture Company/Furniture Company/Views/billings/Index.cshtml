@@ -1,0 +1,82 @@
+﻿
+@model IEnumerable<S2G7PVFAPPLATEST25.Models.billing>
+
+@{
+    ViewBag.Title = "Index";
+
+    <h2>Invoice Details</h2>
+
+
+    <table class="table" border="1" style="border-style:solid">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerPostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderedQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductFinish)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductStandardPrice)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.ProductLineName)</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderedQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductFinish)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductStandardPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductLineName)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    }

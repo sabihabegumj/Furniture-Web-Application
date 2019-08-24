@@ -1,0 +1,110 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<head>
+    <style>
+        table#01, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        table#t01 tr:nth-child(odd) {
+            background-color: #fff;
+        }
+
+        table#t01 th {
+            background-color: #7ccae9;
+            color: black;
+            padding: 15px;
+            text-align: left;
+        }
+
+        table#t01 td {
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+<body style="background-color:#d3edf8;">
+    <div style="font-family:Arial;">
+        <div>
+
+            <div style="margin:75px;">
+                <h2>Customer Invoice</h2>
+                <div>
+                    <table>
+                        <tr>
+                            <td>Customer ID : <label id="customer_id">11</label></td>
+                            <td>Customer Name: <label id="customer_name">Pamelia</label></td>
+                            <td style="padding-left: 100px;">Order Date: 26 May 2019<label id="order_date"></label></td>
+                        </tr>
+                        <tr>
+                            <td style="padding-left: 100px;">Order ID: <label id="order_id">342</label></td>
+
+
+
+                            <td>Address: <label id="customer_address">476 Chestnut Ave.</label></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+
+            <div style="margin:65px;">
+                <table id="t01">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Product Description</th>
+                        <th>Finish</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr>
+                        <td><label id="product_name">Table</label></td>
+                        <td><label id="product_desc">Table made of wood.</label></td>
+                        <td><label id="procudt_finish">Rosewood</label></td>
+                        <td><label id="product_quantity">2</label></td>
+                        <td class="count-me"><label id="product_price">$20</label></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total: </td>
+                        <td><label id="total">$40</label></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+<script>
+
+/*var tds = document.getElementById('t01').getElementsByTagName('td');
+                var sum = 0;
+                for(var i = 0; i < tds.length; i ++) {
+                    if(tds[i].className == 'count-me') {
+                        sum += isNaN(tds[i].innerHTML) ? 0 : parseInt(tds[i].innerHTML);
+                    }
+                }*/
+
+
+</script>
+
