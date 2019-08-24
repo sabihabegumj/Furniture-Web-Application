@@ -15,6 +15,9 @@
 * IDE Tool - Microsoft Visual Studio
 
 ## Running the Application
+* Step 1: Import the database back up file with .bak extension into MS SQL SERVER by clicking on Restore Database from file. Then, select this file and Database will be created.
+* Step 2: Open the project in Visual Studio and connect it to the database by clicking on the Add Database Connection.
+* Step 3: Once the database is connected, Click on View without debugging option, the Web Application will run on your localhost system.
 
 ## Screenshots
 ![Example screenshot](./screenshot/p1.png) 
