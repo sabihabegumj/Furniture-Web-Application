@@ -1,6 +1,6 @@
 # A FURNITURE COMPANY'S WEB APPLICATION
 
-> This Web Application is a Academic Project which mainly focused on Requirement Analysis, Database Designing and Database Modeling, built using ASP.NET MVC C#, MS SQL Server, HTML5, CSS3, Bootstrap, JavaScript
+> This Web Application is an Academic Project which mainly focused on Requirement Analysis, Database Designing and Database Modeling, built using ASP.NET MVC C#, MS SQL Server, HTML5, CSS3, Bootstrap, JavaScript
 
 ## Table of contents
 * [Technologies](#technologies)
@@ -10,7 +10,7 @@
 
 ## Technologies
 * Web Framework - ASP.NET MVC C#
-* Database - MS SQL Server
+* Database - Microsoft SQL Server
 * Web Technologies - HTML5, CSS3, JavaScript, Bootstrap
 * IDE Tool - Microsoft Visual Studio
 
